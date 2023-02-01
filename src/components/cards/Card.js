@@ -1,4 +1,3 @@
-import { Component } from "react"
 import cardSCSS from "./card.module.scss"
 
 //card should create a card object via a factory function
