@@ -1,5 +1,13 @@
 import React from "react"
 
-export default function Nav() {
-    return <nav></nav>
+export default function Nav({ currentScore, bestScore }) {
+    return (
+        <nav>
+            <h1>Just cats</h1>
+            <div>
+                <h2>Current Score: {currentScore}</h2>
+                <h2>Best Score: {bestScore}</h2>
+            </div>
+        </nav>
+    )
 }

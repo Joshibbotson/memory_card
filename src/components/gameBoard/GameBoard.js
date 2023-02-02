@@ -2,9 +2,6 @@ import { useState } from "react"
 import Card from "../cards/Card"
 
 export default function GameBoard() {
-    const [gameOver, setGameOver] = useState(false)
-    const [currentScore, setCurrentScore] = useState(0)
-    const [bestScore, setBestScore] = useState(0)
     const cardImgClassArr = [
         "card1",
         "card2",
