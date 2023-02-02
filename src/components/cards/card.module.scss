@@ -1,6 +1,97 @@
 .card {
-    width: 10rem;
-    height: 10rem;
-    background-color: black;
-    padding: 10rem;
+    border-radius: 10%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .card1,
+    .card2,
+    .card3,
+    .card4,
+    .card5,
+    .card6,
+    .card7,
+    .card8,
+    .card9,
+    .card10,
+    .card11,
+    .card12 {
+        padding: 2rem;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-shadow: 0px 0px 10px whitesmoke;
+
+        border-radius: 10%;
+    }
+
+    .card1 {
+        background-image: url(../assets/cat1.png);
+    }
+    .card2 {
+        background-image: url(../assets/cat2.png);
+    }
+    .card3 {
+        background-image: url(../assets/cat3.png);
+    }
+    .card4 {
+        background-image: url(../assets/cat4.png);
+    }
+    .card5 {
+        background-image: url(../assets/cat5.png);
+    }
+    .card6 {
+        background-image: url(../assets/cat6.png);
+    }
+    .card7 {
+        background-image: url(../assets/cat7.png);
+    }
+    .card8 {
+        background-image: url(../assets/cat8.png);
+    }
+    .card9 {
+        background-image: url(../assets/cat9.png);
+    }
+    .card10 {
+        background-image: url(../assets/cat10.png);
+    }
+    .card11 {
+        background-image: url(../assets/cat11.png);
+    }
+    .card12 {
+        background-image: url(../assets/cat12.png);
+    }
+}
+
+// Desktop//
+@media (min-width: 860px) {
+    .card {
+        border-radius: 10%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .card1,
+        .card2,
+        .card3,
+        .card4,
+        .card5,
+        .card6,
+        .card7,
+        .card8,
+        .card9,
+        .card10,
+        .card11,
+        .card12 {
+            padding: 5rem;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: 0px 0px 10px whitesmoke;
+
+            border-radius: 10%;
+        }
+    }
 }
