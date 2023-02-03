@@ -2,16 +2,17 @@ import "./App.scss"
 import Nav from "./components/Nav"
 import Main from "./components/Main"
 import Loading from "./components/Loading"
-import { useEffect, useState } from "react"
+import GameOverScreen from "./components/gameOverScreen/GameOverScreen"
+import { useEffect, useRef, useState } from "react"
 
 function App() {
     const [loading, setLoading] = useState(false)
     const [initialLoad, setInitialLoad] = useState(true)
-    const [gameOver, setGameOver] = useState(false) //might need to move this down//
+    const [gameOver, setGameOver] = useState(false)
     const [currentScore, setCurrentScore] = useState(0)
+    const roundScore = useRef()
     const [bestScore, setBestScore] = useState(0)
     const [clickedCards, setClickedCards] = useState([])
-    //use usecontext to allow for current score to be upgraded
 
     function timeout(ms) {
         return new Promise(resolve => setTimeout(resolve, ms))
@@ -41,12 +42,23 @@ function App() {
     function checkForSameCard(e) {
         const targetClass = e.target.className
         if (clickedCards.includes(targetClass)) {
+            roundScore.current = currentScore
             setCurrentScore(0)
             setClickedCards([])
+            setGameOver(!gameOver)
         } else {
             setCurrentScore(currentScore + 1)
             setClickedCards([...clickedCards, targetClass])
         }
+    }
+
+    function resetGame() {
+        setCurrentScore(0)
+        setInitialLoad(true)
+
+        roundScore.current = 0
+        setClickedCards([])
+        setGameOver(!gameOver)
     }
 
     return (
@@ -55,7 +67,13 @@ function App() {
             {loading ? (
                 <Loading />
             ) : (
-                <Main checkForSameCard={checkForSameCard} />
+                <Main
+                    checkForSameCard={checkForSameCard}
+                    roundScore={roundScore.current}
+                    gameOver={gameOver}
+                    setGameOver={setGameOver}
+                    resetGame={resetGame}
+                />
             )}
         </>
     )
