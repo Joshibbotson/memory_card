@@ -1,8 +1,10 @@
-import { useState } from "react"
+// import { useState } from "react"
+import { useRef } from "react"
+import uniquid from "uniquid"
 import Card from "../cards/Card"
 
-export default function GameBoard() {
-    const cardImgClassArr = [
+export default function GameBoard({ checkForSameCard }) {
+    let cardImgClassArr = [
         "card1",
         "card2",
         "card3",
@@ -16,11 +18,29 @@ export default function GameBoard() {
         "card11",
         "card12",
     ]
+    let cardImgClassArrRand = randomiseArrOrder(cardImgClassArr)
+    function randomiseArrOrder(arr) {
+        const newArr = []
+        let i
+        while (newArr.length !== arr.length) {
+            i = Math.floor(Math.random() * (arr.length + 1))
+            if (!newArr.includes(arr[i])) {
+                newArr.push(arr[i])
+            }
+        }
+        return newArr
+    }
 
     return (
         <>
-            {cardImgClassArr.map(imgClass => {
-                return <Card imgClass={imgClass} />
+            {cardImgClassArrRand.map(imgClass => {
+                return (
+                    <Card
+                        key={uniquid()}
+                        imgClass={imgClass}
+                        checkForSameCard={checkForSameCard}
+                    />
+                )
             })}
         </>
     )
