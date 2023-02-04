@@ -1,5 +1,4 @@
-// import { useState } from "react"
-import { useRef } from "react"
+import gameBoardSCSS from "./gameBoard.module.scss"
 import uniquid from "uniquid"
 import Card from "../cards/Card"
 
@@ -23,7 +22,7 @@ export default function GameBoard({ checkForSameCard }) {
         const newArr = []
         let i
         while (newArr.length !== arr.length) {
-            i = Math.floor(Math.random() * (arr.length + 1))
+            i = Math.floor(Math.random() * arr.length)
             if (!newArr.includes(arr[i])) {
                 newArr.push(arr[i])
             }
@@ -32,7 +31,7 @@ export default function GameBoard({ checkForSameCard }) {
     }
 
     return (
-        <>
+        <section>
             {cardImgClassArrRand.map(imgClass => {
                 return (
                     <Card
@@ -42,6 +41,6 @@ export default function GameBoard({ checkForSameCard }) {
                     />
                 )
             })}
-        </>
+        </section>
     )
 }

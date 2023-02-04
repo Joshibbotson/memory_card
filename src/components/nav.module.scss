@@ -8,6 +8,8 @@ nav {
     z-index: 0;
     background-color: rgb(34, 34, 34);
     color: white;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 
     h1 {
         display: flex;
@@ -17,5 +19,17 @@ nav {
     }
     .navRight {
         margin-right: 2rem;
+    }
+}
+
+// Desktop//
+@media (min-width: 860px) {
+    nav {
+        h1 {
+            margin-left: 5rem;
+        }
+        .navRight {
+            margin-right: 5rem;
+        }
     }
 }

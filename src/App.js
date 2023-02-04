@@ -13,49 +13,66 @@ function App() {
     const roundScore = useRef()
     const [bestScore, setBestScore] = useState(0)
     const [clickedCards, setClickedCards] = useState([])
+    const [win, setWin] = useState(false)
 
     function timeout(ms) {
         return new Promise(resolve => setTimeout(resolve, ms))
     }
 
-    useEffect(() => {
-        const runLoadingScreen = async () => {
-            setLoading(true)
-            const randomMs = Math.floor(Math.random() * 1500)
-            const randomMsMinMax = (min, max) => {
-                return min + Math.floor(Math.random() * (max - min))
-            }
-
-            await timeout(randomMsMinMax(500, 1500))
-
-            setLoading(false)
+    const runLoadingScreen = async () => {
+        setLoading(true)
+        const randomMs = Math.floor(Math.random() * 1500)
+        const randomMsMinMax = (min, max) => {
+            return min + Math.floor(Math.random() * (max - min))
         }
+
+        await timeout(randomMsMinMax(500, 1500))
+
+        setLoading(false)
+    }
+
+    useEffect(() => {
         initialLoad ? runLoadingScreen() : setInitialLoad(false)
     }, [initialLoad])
 
+    //updates best score, but prevent re-rendering of entire app//
     useEffect(() => {
+        const checkForWin = () => {
+            if (clickedCards.length === 12) {
+                return (
+                    (roundScore.current = currentScore),
+                    setGameOver(true),
+                    setWin(true)
+                )
+            }
+        }
+        checkForWin()
+
         if (currentScore > bestScore) {
             setBestScore(currentScore)
         }
-    }, [currentScore])
+    }, [currentScore, clickedCards])
 
     function checkForSameCard(e) {
         const targetClass = e.target.className
         if (clickedCards.includes(targetClass)) {
             roundScore.current = currentScore
+
             setCurrentScore(0)
             setClickedCards([])
             setGameOver(!gameOver)
         } else {
+            roundScore.current = currentScore
             setCurrentScore(currentScore + 1)
             setClickedCards([...clickedCards, targetClass])
         }
     }
 
     function resetGame() {
+        runLoadingScreen()
         setCurrentScore(0)
+        setWin(false)
         setInitialLoad(true)
-
         roundScore.current = 0
         setClickedCards([])
         setGameOver(!gameOver)
@@ -71,8 +88,8 @@ function App() {
                     checkForSameCard={checkForSameCard}
                     roundScore={roundScore.current}
                     gameOver={gameOver}
-                    setGameOver={setGameOver}
                     resetGame={resetGame}
+                    win={win}
                 />
             )}
         </>

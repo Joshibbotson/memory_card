@@ -9,13 +9,17 @@ export default function Main({
     checkForSameCard,
     gameOver,
     roundScore,
-    setGameOver,
     resetGame,
+    win,
 }) {
     return (
         <>
             {gameOver ? (
-                <GameOverScreen roundScore={roundScore} resetGame={resetGame} />
+                <GameOverScreen
+                    roundScore={roundScore}
+                    resetGame={resetGame}
+                    win={win}
+                />
             ) : (
                 <main>
                     <GameBoard checkForSameCard={checkForSameCard} />

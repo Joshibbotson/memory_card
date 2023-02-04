@@ -2,9 +2,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    align-items: flex-start;
     height: 100vh;
 
     background-color: rgb(52, 52, 52);
@@ -15,8 +13,8 @@ main {
     main {
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        justify-content: space-around;
+        align-items: flex-start;
         flex-wrap: wrap;
         gap: 3rem;
 
