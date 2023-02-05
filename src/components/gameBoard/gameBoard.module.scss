@@ -1,4 +1,4 @@
-section {
+.gameBoard {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -10,7 +10,7 @@ section {
 }
 
 @media (min-width: 860px) {
-    section {
+    .gameBoard {
         display: flex;
         flex-wrap: wrap;
         align-items: center;

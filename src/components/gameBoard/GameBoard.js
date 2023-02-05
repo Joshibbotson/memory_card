@@ -18,6 +18,7 @@ export default function GameBoard({ checkForSameCard }) {
         "card12",
     ]
     let cardImgClassArrRand = randomiseArrOrder(cardImgClassArr)
+
     function randomiseArrOrder(arr) {
         const newArr = []
         let i
@@ -26,12 +27,13 @@ export default function GameBoard({ checkForSameCard }) {
             if (!newArr.includes(arr[i])) {
                 newArr.push(arr[i])
             }
+            console.table(newArr)
         }
         return newArr
     }
 
     return (
-        <section>
+        <section className={gameBoardSCSS.gameBoard}>
             {cardImgClassArrRand.map(imgClass => {
                 return (
                     <Card

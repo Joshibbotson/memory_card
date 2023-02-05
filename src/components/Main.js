@@ -1,9 +1,6 @@
-import Card from "./cards/Card.js"
-import mainSCSS from "./main.module.scss"
-import gameOverScreenSCSS from "../components/gameOverScreen/gameOverScreen.module.scss"
-
 import GameOverScreen from "./gameOverScreen/GameOverScreen.js"
 import GameBoard from "./gameBoard/GameBoard.js"
+import mainSCSS from "./main.module.scss"
 
 export default function Main({
     checkForSameCard,
@@ -21,7 +18,7 @@ export default function Main({
                     win={win}
                 />
             ) : (
-                <main>
+                <main className={mainSCSS.main}>
                     <GameBoard checkForSameCard={checkForSameCard} />
                 </main>
             )}

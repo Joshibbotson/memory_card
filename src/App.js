@@ -2,7 +2,6 @@ import "./App.scss"
 import Nav from "./components/Nav"
 import Main from "./components/Main"
 import Loading from "./components/Loading"
-import GameOverScreen from "./components/gameOverScreen/GameOverScreen"
 import { useEffect, useRef, useState } from "react"
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
 
     const runLoadingScreen = async () => {
         setLoading(true)
-        const randomMs = Math.floor(Math.random() * 1500)
         const randomMsMinMax = (min, max) => {
             return min + Math.floor(Math.random() * (max - min))
         }
@@ -32,10 +30,20 @@ function App() {
     }
 
     useEffect(() => {
-        initialLoad ? runLoadingScreen() : setInitialLoad(false)
+        const runInitialLoadingScreen = async () => {
+            setLoading(true)
+            const randomMsMinMax = (min, max) => {
+                return min + Math.floor(Math.random() * (max - min))
+            }
+
+            await timeout(randomMsMinMax(500, 1500))
+
+            setLoading(false)
+        }
+        initialLoad ? runInitialLoadingScreen() : setInitialLoad(false)
     }, [initialLoad])
 
-    //updates best score, but prevent re-rendering of entire app//
+    //updates best score, but prevents re-rendering of entire app//
     useEffect(() => {
         const checkForWin = () => {
             if (clickedCards.length === 12) {
@@ -51,7 +59,7 @@ function App() {
         if (currentScore > bestScore) {
             setBestScore(currentScore)
         }
-    }, [currentScore, clickedCards])
+    }, [currentScore, clickedCards, bestScore])
 
     function checkForSameCard(e) {
         const targetClass = e.target.className
